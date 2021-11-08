@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {shareReplay} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+    data: Observable<any> | undefined;
    slider:any;
    project:any;
    courses:any;
@@ -38,23 +39,41 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit() {
-    this.apiService.getFrontend().subscribe(
+    this.data = this.apiService.getFrontend().pipe(shareReplay(1));
+    this.data.subscribe(
       data=>{
-        this.slider = data["slider"];
-        this.project = data["project"];
-        this.courses = data["courses"];
-        this.news = data["news"];
-        this.company = data["company"];
-        this.socials = data["socials"];
-        this.emails = data["emails"];
-        this.address = data["address"];
-        this.phones = data["phones"];
-        this.user_count = data["users_count"];
-        this.lesson_count = data["lesson_count"];
-        this.course_count = data["course_count"];
-      },
-      errors=>{console.log(errors)},
-    )
+            this.slider = data["slider"];
+            this.project = data["project"];
+            this.courses = data["courses"];
+            this.news = data["news"];
+            this.company = data["company"];
+            this.socials = data["socials"];
+            this.emails = data["emails"];
+            this.address = data["address"];
+            this.phones = data["phones"];
+            this.user_count = data["users_count"];
+            this.lesson_count = data["lesson_count"];
+            this.course_count = data["course_count"];
+          },
+          errors=>{console.log(errors)},
+    );
+    // this.apiService.getFrontend().subscribe(
+    //   data=>{
+    //     this.slider = data["slider"];
+    //     this.project = data["project"];
+    //     this.courses = data["courses"];
+    //     this.news = data["news"];
+    //     this.company = data["company"];
+    //     this.socials = data["socials"];
+    //     this.emails = data["emails"];
+    //     this.address = data["address"];
+    //     this.phones = data["phones"];
+    //     this.user_count = data["users_count"];
+    //     this.lesson_count = data["lesson_count"];
+    //     this.course_count = data["course_count"];
+    //   },
+    //   errors=>{console.log(errors)},
+    // )
 
 
 

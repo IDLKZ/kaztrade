@@ -34,8 +34,8 @@ export class ApiServiceService {
     ));
   }
 
-  getFrontend():Observable<any>{
-    return  this.http.get(this.apiUrl + "frontend").pipe(
+  getFrontend(){
+    return   this.http.get(this.apiUrl + "frontend").pipe(
       map((data:any)=>{
         data["slider"] = new Slider(data["slider"]);
 

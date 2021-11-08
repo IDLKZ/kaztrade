@@ -20,10 +20,16 @@ import {RegisterComponent} from "./register/register.component";
 
 
 const routes: Routes = [
-  {path:"",component:HomeComponent},
-  {path:"news",component:NewsComponent},
+  {path:"",component:HomeComponent,data: {
+      reuse: true
+    },},
+  {path:"news",component:NewsComponent,data: {
+      reuse: true
+    },},
   {path:'news/:alias',component: NewsSingleComponent,},
-  {path:"course",component:CourseComponent},
+  {path:"course",component:CourseComponent,data: {
+      reuse: true
+    },},
   {path:"course-single/:alias",component:SingleCourseComponent,canActivate:[AuthenticatedGuard]},
   {path:"lesson/:alias",component:LessonComponent,canActivate:[AuthenticatedGuard]},
   {path:"quiz/:id",component:QuizComponent,canActivate:[AuthenticatedGuard]},
