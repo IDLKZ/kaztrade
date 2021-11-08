@@ -1,0 +1,31 @@
+.myNavBar{
+  background-color: #1695DE!important;
+  .all-courses{
+    background-color: #FF9D00;
+    font-weight: bold;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+  }
+}
+.top-header{
+  background-color: #0F4472;
+  .row{
+    .col-md-6{
+      min-height: 40px;
+      align-items: center;
+      .horizontal-line{
+        width: 20px;
+        border-left: 1px solid white;
+        height: 80%;
+      }
+      p{
+        margin: 0;
+      }
+
+    }
+  }
+}
+.nav-item{
+  font-size: 14px;
+}

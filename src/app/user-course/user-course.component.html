@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-6 my-2" *ngFor="let item of courses">
+    <!-- Card Narrower -->
+    <div (click)="navigate(['/course-single',item.alias])" class="card card-cascade narrower course-card">
+
+      <!-- Card image -->
+      <div class="view view-cascade overlay course-card-image">
+        <img class="card-img-top" [src]="item.image"
+             alt="Card image cap">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade">
+        <!-- Label -->
+        <h6 class="pink-text pb-2 pt-1"><i class="fas fa-hashtag"></i> {{item.category?.title}}</h6>
+        <h6 class="pink-text pb-2 pt-1"><i class="fas fa-language"></i> {{item.language?.title}}</h6>
+        <h6 class="text-primary pb-2 pt-1"><i class="fas fa-user"></i> {{item.author?.title}}</h6>
+        <p class="mb-0 my-2 text-primary"><i class="fas fa-calendar mr-2"></i>{{item.created_at}}</p>
+        <!-- Title -->
+        <h4 class="font-weight-bold card-title">{{item.title | truncate:40 }}</h4>
+        <!-- Text -->
+        <p class="card-text">
+          {{item.subtitle | truncate:50}}
+        </p>
+        <!-- Button -->
+        <div>
+          <a [routerLink]="['/course-single',item.alias]" type="button" class="btn btn-info text-white">
+            {{"info"|transloco}}
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Card Narrower -->
+
+
+  </div>
+
+
+</div>
+<div class="row">
+  <div class="col-md-12 text-center my-4" *ngIf="current_page < last_page">
+    <button (click)="paginate()"  type="button" class="btn btn-info btn-rounded">
+      {{"load"|transloco}}
+    </button>
+  </div>
+</div>

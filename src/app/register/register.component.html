@@ -1,0 +1,114 @@
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <!--Card-->
+        <mdb-card class="px-4 py-4 register-card">
+          <div class="text-center">
+            <h3>{{"register_title"|transloco}}</h3>
+            <p class="font-weight-bold">{{"register_subtitle"|transloco}}</p>
+          </div>
+
+          <form [formGroup]="postbox" (ngSubmit)="updateProfile()">
+
+  <span class="bg-danger text-white" *ngIf="errors.length">
+
+                <span class="alert alert-danger w-100 d-block" *ngFor="let error of errors">
+                      {{error}}
+                </span>
+    </span>
+            <mdb-form-control>
+              <input mdbInput type="text" id="typeText" class="form-control" formControlName="name" accept="image/*"/>
+              <label mdbLabel class="form-label" for="typeText">{{"name"|transloco}}</label>
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('name')!.invalid &&
+                    postbox.get('name')!.errors &&
+                    (postbox.get('name')!.dirty || postbox.get('name')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('name')!.hasError('required')">
+                    {{"required"|transloco}}
+                </span>
+    </span>
+            </mdb-form-control>
+
+            <label class="form-label" for="customFile">{{"image"|transloco}}</label>
+            <input type="file" class="form-control" id="customFile" (change)="uploadFile($event)"/>
+
+            <div class="form-outline my-4">
+              <input type="tel" id="typePhone" class="form-control" formControlName="phone"/>
+              <label class="form-label" for="typePhone">{{"phone"|transloco}}</label>
+
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('phone')!.invalid &&
+                    postbox.get('phone')!.errors &&
+                    (postbox.get('phone')!.dirty || postbox.get('phone')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('phone')!.hasError('required')">
+                    {{"required"|transloco}}
+                </span>
+              </span>
+            </div>
+
+            <mdb-form-control class="my-4">
+              <input mdbLabel type="email" id="typeEmail" class="form-control" formControlName="email"/>
+              <label mdbInput class="form-label" for="typeEmail">{{"email"|transloco}}</label>
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('email')!.invalid &&
+                    postbox.get('email')!.errors &&
+                    (postbox.get('email')!.dirty || postbox.get('email')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('email')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('email')!.hasError('email')">
+                 {{"email_validation"|transloco}}
+                </span>
+            </span>
+            </mdb-form-control>
+
+            <mdb-form-control class="my-4">
+              <textarea mdbInput class="form-control" id="textAreaExample" rows="4" formControlName="description">
+              </textarea>
+              <label mdbLabel class="form-label" for="textAreaExample">{{"description"|transloco}}</label>
+            </mdb-form-control>
+
+
+            <div class="form-outline my-4">
+              <input type="password" id="typePassword" class="form-control"
+                     formControlName="password"
+              />
+              <label class="form-label" for="typePassword">Новый пароль</label>
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('password')!.invalid &&
+                    postbox.get('password')!.errors &&
+                    (postbox.get('password')!.dirty || postbox.get('password')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('password')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('password')!.hasError('minLength')">
+                  {{"min"|transloco}}
+                </span>
+            </span>
+            </div>
+
+            <div class="text-right">
+              <button type="submit" class="btn btn-success" [disabled]="postbox.invalid">
+                {{"sighUp"|transloco}}
+              </button>
+            </div>
+
+
+          </form>
+        </mdb-card>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</section>

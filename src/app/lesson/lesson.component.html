@@ -1,0 +1,109 @@
+<section class="lesson py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" #container>
+        <youtube-player
+        [videoId]="lesson.videoId!.id"
+        suggestedQuality="highres"
+        [width]="container.offsetWidth"
+        [height]="container.offsetWidth/2"
+      >
+      </youtube-player>
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-md-7 mt-4">
+        <h3>
+          <span class="text-primary" [style]="{cursor:'pointer'}" [routerLink]="['/course-single/'+lesson.course!.alias]">
+            {{lesson.course!.title}}
+          </span>  /
+          <span class="text-dark">{{"video-lesson"|transloco}} {{lesson.number}} </span>
+        </h3>
+        <h3 class="text-dark font-weight-bold">
+          {{lesson.title}}
+        </h3>
+        <p>
+          {{lesson.subtitle}}
+        </p>
+        <br>
+        <span class="mt-2 d-flex">
+          <button  rippleColor="dark" type="button" class="btn btn-success"
+          *ngIf="isCompleted; else notCompleted"
+          >
+            <i class="far fa-check-circle"></i>
+            {{"passed"|transloco}}
+          </button>
+          <ng-template #notCompleted>
+            <button (click)="completed()" rippleColor="dark" type="button" class="btn btn-outline-info"
+            >
+            <i class="far fa-check-circle"></i>
+            {{"non_passed"|transloco}}
+          </button>
+          </ng-template>
+          <button rippleColor="dark" type="button" class="btn btn-outline-info ml-4" *ngFor="let quiz of quizzes"
+                  [routerLink]="['/quiz/'+quiz.id]"
+          >
+            <i class="fas fa-question"></i>
+            {{"pass_quiz"|transloco}}: {{quiz.quiz.title}}
+          </button>
+        </span>
+
+        <div class="card mt-4 px-4 py-4" [innerHTML]="lesson.description">
+
+        </div>
+      </div>
+
+
+      <div class="col-md-5 mt-4">
+          <div class="card-lesson mt-4">
+            <div class="w-100">
+              <p class="font-weight-bold text-dark-gray">{{"course"|transloco}}: {{lesson.course?.title}}</p>
+              <div style="display: grid; grid-template-columns: 1fr 2fr;align-items: center">
+                <p class="mb-0">{{"progress"|transloco}}:</p>
+                <div class="progress" style="height: 5px">
+                <div class="progress-bar bg-success" role="progressbar" [style]="{width:(completedLesson/categoryLessons.length * 100).toFixed(0)+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+                <small><i class="far fa-play-circle text-primary mr-2"></i>{{lessons.length}} {{"video"|transloco}}
+                </small>
+            </div>
+          </div>
+          <div class="card-lesson mt-4">
+            <div class="w-100">
+              <p class="font-weight-bold text-dark-gray">{{"course_material"|transloco}}</p>
+              <div  *ngFor="let material of lesson.materials">
+                <a href="{{material.file}}" target="_blank" download="download"   type="button" class="btn btn-outline-info ml-4">
+                  <i class="fas fa-download"></i>
+                  {{"download_material"|transloco}}: {{material.title}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-lesson mt-4 py-4 px-4">
+            <div class="w-100">
+              <p class="font-weight-bold text-dark-gray">{{"course_content"|transloco}}</p>
+              <div>
+                <div class="list-group">
+                  <button type="button" class="list-group-item list-group-item-action border-0" *ngFor="let itemLesson of lessons"
+                          [class]="{
+              'active': itemLesson.alias == lesson.alias
+            }"
+                          (click)="navigate(['lesson',itemLesson.alias])"
+                  >
+                    <i class="fas fa-video"></i>
+                     {{itemLesson.title}}
+                    <span [innerHTML]="itemLesson.id | lessonStatus:categoryLessons"></span>
+
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</section>

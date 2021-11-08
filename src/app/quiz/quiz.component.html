@@ -1,0 +1,122 @@
+<section class="my-4 py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="filter-card shadow-5 py-4 px-4 z-depth-1-half">
+          <h5 class="font" [ngStyle]="{fontWeight:600}">{{"questions"|transloco}}:
+            <a class="text-black" [routerLink]="'/lesson/'+quizzes.lesson.alias">
+              {{quizzes.lesson.title}}
+            </a>
+          </h5>
+          <form (submit)="passExam()">
+            <div class="components border-top py-2 my-2" >
+              <div *ngFor="let question of quizzes.quiz.questions">
+                <p>{{question.question_ru}}</p>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" [id] = "'A' + question.id" [name]="'['+question.id+']'"
+                         [value]="{id:question.id,answer:'A'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+
+                  >
+                  <label class="custom-control-label" [for]="'A' + question.id">
+                    {{question.A}}
+                  </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" [id]="'B' + question.id"  [name]="'['+question.id+']'"
+                         [value]="{id:question.id,answer:'B'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+
+                  >
+                  <label class="custom-control-label" [for]="'B' + question.id">
+                    {{question.B}}
+                  </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" [id]="'C' + question.id"  [name]="'['+question.id+']'"
+                         [value]="{id:question.id,answer:'C'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label" [for]="'C' + question.id">
+                    {{question.C}}
+                  </label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" [id]="'D' + question.id"  [name]="'['+question.id+']'"
+                         [value]="{id:question.id,answer:'D'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label" [for]="'D' + question.id">
+                    {{question.D}}
+                  </label>
+                </div>
+
+                <div class="custom-control custom-radio" *ngIf="question.E">
+                  <input type="radio" class="custom-control-input" [id]="'E' + question.id"  [name]="'['+ question.id +']'"
+                         [value]="{id:question.id,answer:'E'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label"  [for]="'E' + question.id">
+                    {{question.E}}
+                  </label>
+                </div>
+                <div class="custom-control custom-radio" *ngIf="question.F">
+                  <input type="radio" class="custom-control-input" [id]="'F' + question.id"  [name]="'[' + question.id +']'"
+                         [value]="{id:question.id,answer:'F'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label"  [for]="'F' + question.id">
+                    {{question.F}}
+                  </label>
+                </div>
+                <div class="custom-control custom-radio" *ngIf="question.G">
+                  <input type="radio" class="custom-control-input" [id]="'G' + question.id"  [name]="'[' + question.id +']'"
+                         [value]="{id:question.id,answer:'G'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label"  [for]="'G' + question.id">
+                    {{question.G}}
+                  </label>
+                </div>
+                <div class="custom-control custom-radio" *ngIf="question.K">
+                  <input type="radio" class="custom-control-input" [id]="'K' + question.id"  [name]="'['+question.id+']'"
+                         [value]="{id:question.id,answer:'K'}"
+                         [ngModel]="answers"
+                         (ngModelChange)="toggleCheck($event)"
+                  >
+                  <label class="custom-control-label" [for]="'K' + question.id">
+                    {{question.K}}
+                  </label>
+                </div>
+
+                <hr>
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-success mr-auto">{{"send"|transloco}}</button>
+              </div>
+
+
+
+            </div>
+          </form>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

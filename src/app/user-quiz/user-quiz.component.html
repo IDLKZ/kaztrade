@@ -1,0 +1,42 @@
+<div class="row" *ngIf="attempts.length">
+  <div class="col-md-12 mb-5" *ngFor="let item of attempts ">
+
+    <!--Card-->
+    <mdb-card>
+      <div class="px-4 py-2">
+        <h5>{{"video-lesson"|transloco}}:{{item[0].lesson_quiz.lesson.title}}</h5>
+        <h5>{{"quiz"|transloco}}:{{item[0].lesson_quiz.quiz.title}}</h5>
+        <h5>{{"attempt"|transloco}}:{{item[0].attempt}}</h5>
+        <h5>{{"date"|transloco}}:{{item[0].created_at}}</h5>
+      </div>
+
+      <table class="table table-hover table-responsive" style="width: 100%">
+        <thead>
+        <tr>
+          <th scope="col">{{"question"|transloco}}</th>
+          <th scope="col">{{"user_answer"|transloco}}</th>
+          <th scope="col">{{"right_answer"|transloco}}</th>
+          <th scope="col">{{"result"|transloco}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let qItem of item">
+          <th scope="row">{{qItem.question.question_ru}}</th>
+          <td>{{qItem.question[qItem.user_answer]}}</td>
+          <td>{{qItem.question[qItem.right_answer]}}</td>
+          <td>{{qItem.right}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </mdb-card>
+    <!--/.Card-->
+
+  </div>
+
+
+
+
+</div>
+
+

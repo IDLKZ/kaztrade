@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'kaztrade';
+
+
+  onActivate(event: Event) {
+    window.scrollTo(0, 0);
+  }
+
+  constructor() {
+
+  }
+
+
+
 }

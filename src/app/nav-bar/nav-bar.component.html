@@ -1,0 +1,153 @@
+<!--Navbar-->
+<section *transloco="let t">
+
+<!--  TOP HEADER-->
+  <section class="top-header">
+    <div class="container  d-none d-md-block">
+      <div class="row">
+        <div class="col-md-6 d-flex">
+          <span *ngIf="socials[0] !== undefined">
+            <a class="text-white mx-2"
+               *ngFor="let social of socials[0]"
+               href="{{social.link}}"target="_blank">
+            <i [class]="social.icon"></i>
+          </a>
+          </span>
+
+
+          <span class="horizontal-line ml-2"></span>
+          <p class="font-weight-bold text-white ma-0">{{t('email')}}:
+          <a class="text-white mx-1" *ngFor="let item of socials[2]">
+              {{item.email}}
+          </a>
+          </p>
+
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+
+
+      <span class="font-weight-bold text-white my">
+                <mdb-icon fas icon="fas fa-user mr-1"></mdb-icon>
+                <span *ngIf="isLoggedIn;else guest">
+                <a routerLink="/cabinet" class="text-white">{{"cabinet"|transloco}}</a>
+                </span>
+                <ng-template #guest>
+                <a routerLink="/login" class="text-white">{{t("login")}}</a> /
+                <a routerLink="/register" class="text-white">{{t("register")}}</a>
+              </ng-template>
+      </span>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+<!--END OF TOP HEADER-->
+
+
+<!--  NAVBAR-->
+  <section class="top-header myNavBar">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 py-2">
+      <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  z-depth-0 myNavBar"
+                  [containerInside]="false">
+
+        <!-- Navbar brand -->
+        <mdb-navbar-brand>
+        <a class="navbar-brand mx-2" [routerLink]="['/']">
+          <img src="./assets/image/logo.png" style="width:140px;">
+        </a>
+        </mdb-navbar-brand>
+        <section class="d-md-flex d-sm-none d-xs-none d-none ">
+          <button
+            class="btn all-courses text-uppercase ml-2"
+            [routerLink]="['/course']"
+          >
+
+            <i class="fas fa-th"></i>
+            {{t('all_courses')}}
+          </button>
+<!--          <form class="d-flex input-group w-auto mx-2">-->
+<!--            <input-->
+<!--              type="search"-->
+<!--              class="form-control rounded bg-transparent text-white"-->
+<!--              placeholder="Search"-->
+<!--              aria-label="Search"-->
+<!--              aria-describedby="search-addon"-->
+<!--            />-->
+<!--          </form>-->
+        </section>
+
+        <!-- Collapsible content -->
+        <links>
+
+          <!-- Links -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link waves-light" [routerLink]="['/']" mdbWavesEffect >{{t('menu_main') | uppercase}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" [routerLink]="['/']" fragment="company">{{t('menu_company') | uppercase}} </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" [routerLink]="['/course']" mdbWavesEffect >{{t('menu_course') | uppercase}} </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" [routerLink]="['/news']" mdbWavesEffect >{{t('menu_news') | uppercase}} </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/']" fragment="contact">{{t('menu_contact') | uppercase}} </a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                {{language | language}}
+                <span class="caret"></span></a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="setActiveLanguage(language)"
+                *ngFor="let language of languages"
+                >{{language | language}}</a>
+              </div>
+            </li>
+            <!-- Light -->
+            <span class="d-block d-sm-block d-md-none d-lg-none">
+           <li class="nav-item d-md-none d-sm-block d-xs-block" *ngIf="isLoggedIn;else guest">
+            <a [routerLink]="['/cabinet']" class="text-white">{{"cabinet"|transloco}}</a>
+           </li>
+            <ng-template #guest>
+            <li class="nav-item d-md-none d-sm-block d-xs-block">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/login']">{{t('login') | uppercase}} </a>
+            </li>
+            <li class="nav-item d-md-none d-sm-block d-xs-block">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/register']">{{t('register') | uppercase}} </a>
+            </li>
+            </ng-template>
+              </span>
+
+          </ul>
+          <section class="d-md-none d-sm-block d-xs-block my-2">
+            <button
+              class="btn all-courses text-uppercase ml-2"
+              [routerLink]="['/course']"
+            >
+
+              <i class="fas fa-th"></i>
+              {{t('all_courses')}}
+            </button>
+          </section>
+          <!-- Links -->
+        </links>
+        <!-- Collapsible content -->
+
+      </mdb-navbar>
+    </div>
+
+  </div>
+</div>
+  </section>
+
+<!--/.Navbar-->
+</section>

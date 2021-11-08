@@ -1,0 +1,101 @@
+<section class="main-news">
+  <div class="container">
+    <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">{{"menu_main"|transloco}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{"news"|transloco}}</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 hot-news pa-4" *ngIf="data[0]"
+           (click)="navigate(data[0].alias)"
+           [style]='{
+           backgroundImage:"linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("+ data[0].thumbnail +")"
+           }'
+      >
+        <div>
+          <span class="badge bg-primary text-white">
+            {{data[0].category.title}}
+          </span>
+          <h2 class="main-news-title">
+            {{data[0].title}}
+          </h2>
+          <span class="d-flex align-items-center news-info">
+            <i class="fas fa-user-edit text-white"></i>
+            <p class="font-weight-bold text-white ml-2 mb-0">{{data[0].author.title}}</p>
+
+            <i class="fas fa-clock text-white ml-2"></i>
+            <p class="font-weight-bold text-white ml-2 mb-0">{{data[0].created_at}}</p>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 trend-news d-lg-block d-md-none d-sm-none d-xs-none d-none">
+        <h4>{{"new_news"|transloco}}</h4>
+        <div class="card mb-3" *ngFor="let item of data[1]" (click)="navigate(item.alias)">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <img
+                [src]="item.thumbnail"
+                alt="..."
+                class="img-fluid h-100"
+              />
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="card-title">{{item.title|truncate:40:0}}...</h5>
+                <p class="card-text">
+                  <small class="text-muted">
+                    {{item.created_at}}
+                  </small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="our_news bg-white">
+  <div class="container">
+    <div class="row mt-2 py-md-2">
+      <div class="col-md-4 col-sm-6 col-xs-6 col-6 my-2 news_cols" *ngFor="let item of data[2]">
+        <div class="news_block z-depth-1"
+             (click)="navigate(item.alias)"
+        >
+          <div class="news_thumbnail"
+               [ngStyle]="{
+          backgroundImage:'url('+item.thumbnail+')'
+          }"
+          >
+          </div>
+          <div class="news_text">
+            <p class="news_category">
+              #  {{item.category.title}}
+            </p>
+            <p class="news_title">
+              {{item.title|truncate:40:0}}...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center" *ngIf="current_page<last_page">
+        <button (click)="paginate()" type="button" class="btn btn-primary btn-rounded">
+          {{"load"|transloco}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

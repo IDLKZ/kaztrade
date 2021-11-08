@@ -1,0 +1,83 @@
+<section class="login-form py-4">
+
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center align-items-center py-4">
+        <mdb-card class="px-4 py-4">
+          <div class="text-center">
+            <h3 class="main-title">{{"login_title"|transloco}}</h3>
+            <p class="font-weight-bold">{{"login_subtitle"|transloco}}</p>
+          </div>
+
+        <form  [formGroup] = loginForm (ngSubmit)="submit()">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" formControlName="email" id="form2Example1" class="form-control" />
+            <label class="form-label" for="form2Example1">Email address</label>
+            <span class="bg-danger text-white"
+                  *ngIf="loginForm.get('email')!.invalid &&
+                    loginForm.get('email')!.errors &&
+                    (loginForm.get('email')!.dirty || loginForm.get('email')!.touched)"
+            >
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="loginForm.get('email')!.hasError('required')">
+                   {{"required"|transloco}}
+                </span>
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="loginForm.get('email')!.hasError('email')">
+                  {{"email_validation"|transloco}}
+                </span>
+              </span>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" formControlName="password" id="form2Example2" class="form-control" />
+            <label class="form-label" for="form2Example2">
+              {{"password"|transloco}}
+            </label>
+            <span class="bg-danger text-white"
+
+                  *ngIf="loginForm.get('password')!.invalid &&
+                    loginForm.get('password')!.errors &&
+                    (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)"
+            >
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="loginForm.get('password')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="loginForm.get('password')!.hasError('min')">
+                  {{"min"|transloco}}
+                </span>
+              </span>
+          </div>
+
+
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4"
+          [disabled]="loginForm.invalid"
+          >{{"signIn"|transloco}}</button>
+
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>{{"no_account"| transloco}}
+              <a routerLink="/register">
+              {{"register"|transloco}}
+            </a></p>
+          </div>
+        </form>
+        </mdb-card>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</section>

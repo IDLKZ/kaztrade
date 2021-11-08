@@ -1,0 +1,131 @@
+<section class="courses my-5">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="md-form">
+              <mdb-icon fas icon="search" class="prefix"></mdb-icon>
+              <input mdbInput type="text" [ngModel]="search"
+                     (ngModelChange)="searchCourse($event)"
+                     id="form2" class="form-control">
+              <label for="form2"></label>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-center">
+            <select class="browser-default custom-select"
+                    [ngModel]="author_id"
+                    (ngModelChange)="selectAuthor($event)"
+            >
+              <option selected value="0">{{"all"|transloco}}</option>
+              <option  [value]="item.id" *ngFor="let item of authors"
+              >
+                {{item.title}}
+              </option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-4 py-4 my-2">
+        <div class="filter-card shadow-5 py-4 px-4 z-depth-1-half">
+          <h5 class="font" [ngStyle]="{fontWeight:600}">{{"filter"|transloco}}</h5>
+          <div class="components border-top py-2 my-2">
+            <h5>{{"languages"|transloco}}:</h5>
+            <mdb-checkbox [default]="true" [checked]="true"
+              (change)="selectLanguage(0)"
+                          [checked]="categoryAll"
+            >{{"all"|transloco}}</mdb-checkbox>
+            <mdb-checkbox [default]="true" *ngFor="let lang of languages"
+                          (change)="selectLanguage(lang.id)"
+                          [checked]="languagesID.includes(lang.id) || languageAll"
+            >
+              {{lang.title}}
+            </mdb-checkbox>
+          </div>
+          <div class="components border-top py-2 my-2">
+            <h5>{{"category"|transloco}}:</h5>
+            <mdb-checkbox [default]="true" [checked]="categoryAll" value="0" (change)="selectCourse(0)"
+
+            >{{"all"|transloco}}</mdb-checkbox>
+            <mdb-checkbox [default]="true" *ngFor="let item of categories"
+            (change)="selectCourse(item.id)"
+                          [checked]="categoryID.includes(item.id) || categoryAll"
+            >
+              {{item.title}}
+            </mdb-checkbox>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-8 py-4">
+        <div class="row">
+          <div class="col-md-6 my-2" *ngFor="let item of courses">
+            <!-- Card Narrower -->
+            <div (click)="navigate(['/course-single',item.alias])" class="card card-cascade narrower course-card">
+
+              <!-- Card image -->
+              <div class="view view-cascade overlay course-card-image">
+                <img class="card-img-top" [src]="item.image"
+                     alt="Card image cap">
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade">
+                <!-- Label -->
+                <h6 class="pink-text pb-2 pt-1"><i class="fas fa-hashtag"></i> {{item.category?.title}}</h6>
+                <h6 class="pink-text pb-2 pt-1"><i class="fas fa-language"></i> {{item.language?.title}}</h6>
+                <h6 class="text-primary pb-2 pt-1"><i class="fas fa-user"></i> {{item.author?.title}}</h6>
+                <p class="mb-0 my-2 text-primary"><i class="fas fa-calendar mr-2"></i>{{item.created_at}}</p>
+                <!-- Title -->
+                <h4 class="font-weight-bold card-title">{{item.title | truncate:40 }}</h4>
+                <!-- Text -->
+                <p class="card-text">
+                  {{item.subtitle | truncate:50}}
+                </p>
+                <!-- Button -->
+                <div>
+                  <a [routerLink]="['/course-single',item.alias]" type="button" class="btn btn-info text-white">
+                    {{"info"|transloco}}
+                  </a>
+
+                </div>
+
+              </div>
+
+            </div>
+            <!-- Card Narrower -->
+
+
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center my-4" *ngIf="current_page < last_page">
+            <button (click)="paginate()"  type="button" class="btn btn-info btn-rounded">
+              {{"load"|transloco}}
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+</section>

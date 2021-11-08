@@ -1,0 +1,60 @@
+<section class="my-5">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img
+            src="{{user.image}}"
+            class="card-img-top"
+            width="100%"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{user.name}}</h5>
+            <p class="card-text">
+              {{user.description}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush ">
+            <li class="list-group-item">
+              <a class="text-dark-gray" routerLink="/cabinet/my-course">
+                <i class="fas fa-camera"></i>
+                {{"my_courses"|transloco}}
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a class="text-dark-gray" routerLink="/cabinet/my-quiz">
+                <i class="fas fa-question-circle" ></i>
+                {{"my_quizzes"|transloco}}
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a class="text-dark-gray" routerLink="/cabinet/setting">
+                <i class="fas fa-toolbox"></i>
+                {{"settings"|transloco}}
+              </a>
+            </li>
+            <li class="list-group-item" (click)="logout()">
+              <a class="text-dark-gray">
+                <i class="fas fa-power-off"></i>
+                {{"logout"|transloco}}
+              </a>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</section>
+
+

@@ -1,0 +1,93 @@
+<section class="single-course d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mt-2 d-flex align-items-center order-lg-1 order-md-1 order-sm-2 order-2">
+          <div>
+            <p class="font-weight-bold text-white ml-2 my-4 ml-0">
+              <i class="fas fa-hashtag text-white ml-2"></i>
+              {{course.category!.title}}
+            </p>
+            <h2 class="text-white font-weight-bold my-4">
+              {{course.title}}
+            </h2>
+            <p class="text-white mt-2 font-weight-bold my-4">
+              {{course.subtitle}}
+            </p>
+            <span class="d-flex my-2">
+            <i class="fas fa-clock text-white ml-2"></i>
+            <p class="font-weight-bold text-white ml-2 mb-0">{{course.created_at}}</p>
+            <i class="fas fa-user text-white ml-2"></i>
+            <p class="font-weight-bold text-white ml-2 mb-0">{{course.author!.title}}</p>
+          </span>
+            <button (click)="addCourse()" type="button" class="btn btn-success" data-mdb-ripple-color="dark" *ngIf="!user_courses.includes(course.id)">
+              {{"subscribe"|transloco}}
+            </button>
+          </div>
+
+        </div>
+        <div class="col-md-6 text-sm-center mt-4 px-2 d-flex align-items-center order-lg-2 order-md-2 order-sm-1 order-1">
+          <img [src]="course.image" [ngStyle]="{borderRadius:'15px'}" width="100%">
+        </div>
+      </div>
+
+
+
+    </div>
+</section>
+
+<section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-md-8 order-lg-1 order-md-1 order-sm-2 order-2 my-2">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{"description"|transloco}}</h5>
+                <div [innerHTML]="course.description"></div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{"advantages"|transloco}}</h5>
+                <div [innerHTML]="course.advantages"></div>
+              </div>
+            </div>
+        <div class="card mt-2">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">{{"requirements"|transloco}}</h5>
+            <div [innerHTML]="course.requirements"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="col-md-4 order-lg-2 order-md-2 order-sm-1 order-1 my-2">
+        <div class="card">
+
+          <div class="list-group" *ngIf="user_courses.includes(course.id)">
+            <button type="button" class="list-group-item list-group-item-action" *ngFor="let item of course.lessons"
+            [class]="{
+              'active': item == 2
+            }"
+            (click)="navigate(['lesson',item.alias])"
+            >
+              <i class="fas fa-video"></i>
+              {{"video-lesson"|transloco}} {{item.number +" "+ item.title}}
+              <span [innerHTML]="item.id | lessonStatus:lessons"></span>
+            </button>
+          </div>
+
+
+
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,66 @@
+<section class="single-news">
+  <div class="container">
+    <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">{{"menu_main"|transloco}}</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a routerLink="/news">{{"news"|transloco}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{singleNews.title}}</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+    <div class="col-lg-8 pa-4">
+      <p class="main-title">{{singleNews.title}}</p>
+      <p class="main-subtitle" style="font-size: 20px">{{singleNews.subtitle}}</p>
+      <span class="badge bg-primary text-white">
+        {{singleNews.category.title}}
+      </span>
+      <span class="d-flex align-items-center news-info my-2">
+            <i class="fas fa-user-edit text-primary"></i>
+            <p class="font-weight-bold text-black ml-2 mb-0">
+              {{singleNews.author.title}}
+            </p>
+
+            <i class="fas fa-clock text-primary ml-2"></i>
+            <p class="font-weight-bold text-black ml-2 mb-0">
+              {{singleNews.created_at}}
+            </p>
+          </span>
+      <img width="100%" [src]="singleNews.image">
+      <div class="py-4 content"
+      [innerHTML]="singleNews.description"
+      ></div>
+
+
+    </div>
+
+    <div class="col-lg-4 trend-news">
+      <div class="mb-4 font-weight-bold">
+        <h4>Самые новые новости</h4>
+      </div>
+      <div class="card mt-4 card-news" *ngFor="let item of news" [routerLink]="['/news',item.alias]"
+      >
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+          <img
+            [src]="item.image"
+            class="img-fluid"
+          />
+          <a>
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">
+            {{item.subtitle | slice:0:50}}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+</section>

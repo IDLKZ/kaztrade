@@ -1,0 +1,389 @@
+<section class="slider">
+<div class="container d-flex">
+  <div class="row d-flex align-items-center py-2" *ngIf="slider; else nonSlider">
+    <div class="col-md-6 py-4">
+
+      <h1 class="text-white font-weight-normal main-title"
+
+      >{{slider.title}}</h1>
+      <p class="text-white font-weight-bold mt-4 main-subtitle">
+        {{slider.subtitle}}
+      </p>
+      <a class="btn pill-button" [routerLink]="['/course']">
+        <mdb-icon far icon="play-circle"></mdb-icon>
+        {{slider.button}}
+      </a>
+    </div>
+    <div class="col-md-6 py-4">
+      <img [src]="slider.image" width="100%">
+
+    </div>
+  </div>
+  <ng-template #nonSlider>
+    <div class="row d-flex align-items-center py-2">
+      <div class="col-md-6 py-4">
+
+        <h1 class="text-white font-weight-normal main-title"
+
+        >Курсы по обучению экспортеров</h1>
+        <p class="text-white font-weight-bold mt-4 main-subtitle">Образовательные курсы по запуску и масштабированию
+          экспортной деятельности вашей компании
+        </p>
+        <a class="btn pill-button" >
+
+          <mdb-icon far icon="play-circle"></mdb-icon>
+          {{"watch_course" | transloco}}
+        </a>
+      </div>
+      <div class="col-md-6 py-4">
+        <img src="./assets/image/QazTrade-1%202.png" width="100%">
+
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+</section>
+
+<section class="project py-4">
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-md-12 py-2">
+        <h1 class="text-black font-weight-bold main-title">
+          {{"about_project" | transloco}}
+        </h1>
+      </div>
+      <div class="col-md-5" *ngIf="project;else nonProject">
+        <h4>{{project.title}}</h4>
+        <div class="pt-2" [innerHTML]="project.description">
+        </div>
+      </div>
+      <ng-template #nonProject>
+        <div class="col-md-5">
+          <h4></h4>
+          <p class="font-weight-normal pt-2">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+          </p>
+        </div>
+      </ng-template>
+      <div class="col-md-7 stats-wrapper my-2">
+
+          <div class="stats-card">
+            <span class="text-center">
+                <mdb-icon fas icon="clipboard-list"></mdb-icon>
+              <p class="font-weight-bold stats-number">
+                {{course_count}}+
+              </p>
+              <p class="stats-title">
+                {{"course" |transloco}}
+              </p>
+            </span>
+
+          </div>
+          <div class="stats-card">
+            <span class="text-center">
+                <mdb-icon far icon="file-video"></mdb-icon>
+              <p class="font-weight-bold stats-number">
+                {{lesson_count}}+
+              </p>
+              <p class="stats-title">
+                {{"videocourse" |transloco}}
+              </p>
+            </span>
+          </div>
+          <div class="stats-card">
+              <span class="text-center">
+                <mdb-icon fas icon="user-graduate"></mdb-icon>
+              <p class="font-weight-bold stats-number">
+                {{user_count}}+
+              </p>
+              <p class="stats-title">
+                {{"students" |transloco}}
+              </p>
+            </span>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our_course">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="font-weight-normal pt-2 text-gray">
+          #qaztradeacademy
+        </p>
+        <h1 class="text-black font-weight-bold main-title">
+          {{"our_course" | transloco}}
+        </h1>
+      </div>
+    </div>
+    <div class="row mt-2 py-2">
+
+      <div class="col-md-3 col-sm-6 col-xs-6 col-6 my-2 course_cols" *ngFor="let item of courses">
+        <div class="course-block" [routerLink]="['/course-single',item.alias]">
+          <div class="text-center">
+            <div class="circle" [ngStyle]="{display:'inline-block'}">
+              <img [src]="item.image" width="100%">
+            </div>
+            <div class="my-2 font-weight-bold">
+              {{item.title}}
+            </div>
+            <div class="mt-2 course_count">
+              {{item.lessons_count}} {{"video"|transloco}}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="our_news">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="font-weight-normal pt-2 text-white">
+          #qaztradeacademy
+        </p>
+        <h1 class="text-white font-weight-bold main-title">
+          {{"news" | transloco}}
+        </h1>
+      </div>
+    </div>
+    <div class="row mt-2 py-2">
+      <div class="col-md-4 col-sm-6 col-xs-6 col-6 my-2 news_cols" *ngFor="let item of news">
+        <div class="news_block"   >
+          <div class="news_thumbnail"
+          [ngStyle]="{
+          backgroundImage:'url('+ item.thumbnail +')'
+          }"
+          >
+          </div>
+          <div class="news_text">
+            <p class="news_category">
+              #{{item.category.title}}
+            </p>
+            <p class="news_title">
+              {{item.title | truncate:40:0}}
+            </p>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+<section class="our_company" id="company">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="font-weight-normal pt-2 text-gray">
+          #qaztradeacademy
+        </p>
+        <h1 class="font-weight-bold main-title">
+          {{company.title}}
+        </h1>
+      </div>
+    </div>
+    <div class="row mt-2 py-2">
+      <div class="col-md-12" [innerHTML]="company.description">
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+
+<section class="contacts" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="font-weight-normal pt-2 text-gray">
+          #qaztradeacademy
+        </p>
+        <h1 class="font-weight-bold main-title">
+          {{"contact_with_us" | transloco}}
+        </h1>
+      </div>
+    </div>
+    <div class="row mt-4 py-2">
+      <div class="col-md-4 contact_cols">
+        <div class="contact_blog">
+          <section class="contacts_icon">
+            <div class="outside-circle">
+              <div class="inside-circle d-flex justify-content-center align-items-center">
+                <mdb-icon far icon="building"></mdb-icon>
+              </div>
+            </div>
+          </section>
+
+          <section class="contacts_text">
+            <span>
+              <p class="contact_title">
+              {{"address"|transloco}}:
+            </p>
+              <ul class="list-unstyled pa-0">
+                <li class="py-1" *ngFor="let add of address">
+                  {{add.title}}
+                </li>
+              </ul>
+            </span>
+
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 contact_cols">
+        <div class="contact_blog">
+          <section class="contacts_icon">
+            <div class="outside-circle">
+              <div class="inside-circle d-flex justify-content-center align-items-center">
+                <mdb-icon far icon="envelope"></mdb-icon>
+              </div>
+            </div>
+          </section>
+
+          <section class="contacts_text">
+            <span>
+              <p class="contact_title">
+              {{"email"|transloco}}:
+            </p>
+              <ul class="list-unstyled pa-0">
+                <li class="py-1" *ngFor="let email of emails">
+                  {{email.email}}
+                </li>
+              </ul>
+            </span>
+
+          </section>
+        </div>
+      </div>
+      <div class="col-md-4 contact_cols">
+        <div class="contact_blog">
+          <section class="contacts_icon">
+            <div class="outside-circle">
+              <div class="inside-circle d-flex justify-content-center align-items-center">
+                <mdb-icon fas icon="phone-alt"></mdb-icon>
+              </div>
+            </div>
+          </section>
+
+          <section class="contacts_text">
+            <span class="px-2">
+              <p class="contact_title">
+              {{"phone"|transloco}}:
+            </p>
+              <ul class="list-unstyled pa-0">
+                <li class="py-1" *ngFor="let phone of phones">
+                  <a class="text-dark" [href]="'tel:'+phones">
+                    {{phone.title}}:{{phone.phone}}
+                  </a>
+                </li>
+              </ul>
+            </span>
+
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-md-6 d-none d-md-block">
+          <img src="./assets/image/contact_us.png" width="100%">
+        </div>
+      <div class="col-md-6 px-md-5">
+        <div class="contact-form">
+          <div class="my-4">
+              <h4>{{"send_request"|transloco}}</h4>
+            </div>
+          <form [formGroup]="postbox" (ngSubmit)="sendEmail()">
+
+
+
+            <div class="form-outline mb-4">
+              <input type="text" formControlName="name" id="form1Example3" class="form-control" [placeholder]="'name'|transloco"/>
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('name')!.invalid &&
+                    postbox.get('name')!.errors &&
+                    (postbox.get('name')!.dirty || postbox.get('name')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('name')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+
+              </span>
+            </div>
+
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" formControlName="email" id="form1Example1" class="form-control" [placeholder]="'email'|transloco"/>
+              <span class="bg-danger text-white"
+
+                    *ngIf="postbox.get('email')!.invalid &&
+                    postbox.get('email')!.errors &&
+                    (postbox.get('email')!.dirty || postbox.get('email')!.touched)"
+              >
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('email')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('email')!.hasError('email')">
+                   {{"email_validation"|transloco}}
+                </span>
+              </span>
+            </div>
+            <!-- Phone input -->
+            <div class="form-outline mb-4">
+              <input type="text" formControlName="phone" id="form1Example2" class="form-control" [placeholder]="'phone'|transloco"/>
+              <span class="bg-danger text-white"
+                    *ngIf="postbox.get('phone')!.invalid &&
+                    postbox.get('phone')!.errors &&
+                    (postbox.get('phone')!.dirty || postbox.get('phone')!.touched)">
+                <span class="alert alert-danger w-100 d-block"
+                      *ngIf="postbox.get('phone')!.hasError('required')">
+                  {{"required"|transloco}}
+                </span>
+
+              </span>
+            </div>
+
+            <!-- Message input -->
+            <div class="form-outline mb-4">
+              <textarea style="width: 100%;" formControlName="message"></textarea>
+            </div>
+
+
+            <!-- Submit button -->
+            <button
+              [disabled]="!postbox.valid"
+              type="submit" class="btn btn-primary contact-button">
+              <mdb-icon fab icon="telegram"></mdb-icon>
+              {{"request"|transloco}}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

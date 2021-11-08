@@ -1,0 +1,19 @@
+.single-course{
+  min-height: 500px;
+  background-color: #1695de;
+  padding: 20px 0;
+  .row{
+      h2{
+        @media screen and (max-width: 400px){
+          font-size: 22px;
+        }
+        @media screen and (min-width: 400px) and (max-width: 700px){
+          font-size: 26px;
+        }
+      }
+
+
+  }
+
+
+}
